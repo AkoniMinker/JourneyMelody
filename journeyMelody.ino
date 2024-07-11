@@ -32,6 +32,8 @@ thinking about singing a new fairytale to our cats
 how to count. kitties gotta count the biscuits they make
 */
 
+int piezoPin = 6;
+
 // notes in the melody:
 int melody[] = { // Each line is separated by 2 measures of 2/4
   Rest, NOTE_C5,
@@ -81,7 +83,7 @@ int bpm = 90;  // Set the BPM here
 
 void setup() {
   lcd.begin(16, 2);
-  lcd.print("Playing Melody");
+  lcd.print("Playing");
   
   bpm = bpm*2;
   // iterate over the notes of the melody:
@@ -107,7 +109,7 @@ void setup() {
       noteDuration = (60000 / bpm) * 2;
     }
     
-    tone(8, melody[thisNote], noteDuration);
+    tone(piezoPin, melody[thisNote], noteDuration);
     // to distinguish the notes, set a minimum time between them.
     // the note's duration + 30% seems to work well:
     int pauseBetweenNotes = noteDuration * 1.30;
